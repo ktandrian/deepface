@@ -3,6 +3,13 @@ from deepface.commons import package_utils, weight_utils
 from deepface.models.FacialRecognition import FacialRecognition
 from deepface.commons.logger import Logger
 
+# ktandrian -----------------------
+import os
+from numpy import ndarray
+from typing import List
+from google.cloud.aiplatform import Endpoint
+# ktandrian -----------------------
+
 logger = Logger()
 
 # --------------------------------
@@ -60,10 +67,21 @@ class FaceNet512dClient(FacialRecognition):
     """
 
     def __init__(self):
-        self.model = load_facenet512d_model()
+        # self.model = load_facenet512d_model()
+        self.endpoint = Endpoint(
+            endpoint_name=os.environ.get("VERTEX_AI_FACENET512_ENDPOINT_NAME", ""),
+            project=os.environ.get("VERTEX_AI_PROJECT_ID"),
+            location=os.environ.get("VERTEX_AI_LOCATION"),
+        )
         self.model_name = "FaceNet-512d"
         self.input_shape = (160, 160)
         self.output_shape = 512
+    
+    def forward(self, img: ndarray) -> List[float]:
+        prediction = self.endpoint.predict(
+            instances=[{ "data": img.tolist()[0] }],
+        )
+        return prediction.predictions[0]
 
 
 def scaling(x, scale):
