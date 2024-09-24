@@ -2,6 +2,9 @@ from abc import ABC
 from typing import Any, Union, List, Tuple
 import numpy as np
 from deepface.commons import package_utils
+from deepface.commons.logger import Logger
+
+logger = Logger()
 
 tf_version = package_utils.get_tf_major_version()
 if tf_version == 2:
@@ -19,6 +22,7 @@ class FacialRecognition(ABC):
     output_shape: int
 
     def forward(self, img: np.ndarray) -> List[float]:
+        logger.info("# FacialRecognition: using local model")
         if not isinstance(self.model, Model):
             raise ValueError(
                 "You must overwrite forward method if it is not a keras model,"

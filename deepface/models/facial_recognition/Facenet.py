@@ -5,6 +5,7 @@ from deepface.commons.logger import Logger
 
 # ktandrian -----------------------
 import os
+import time
 from numpy import ndarray
 from typing import List
 from google.cloud.aiplatform import Endpoint
@@ -78,9 +79,13 @@ class FaceNet512dClient(FacialRecognition):
         self.output_shape = 512
     
     def forward(self, img: ndarray) -> List[float]:
+        logger.info("# FaceNet: using endpoint model")
+        tic = time.time()
         prediction = self.endpoint.predict(
             instances=[{ "data": img.tolist()[0] }],
         )
+        toc = time.time()
+        logger.info(f"# FaceNet: model prediction took {toc-tic}s")
         return prediction.predictions[0]
 
 
