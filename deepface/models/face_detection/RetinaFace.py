@@ -11,7 +11,11 @@ from deepface.models.Detector import Detector, FacialAreaRegion
 # pylint: disable=too-few-public-methods
 class RetinaFaceClient(Detector):
     def __init__(self):
-        self.model = rf.build_model()
+        # self.model = rf.build_model()
+
+        # ktandrian -----------------------
+        self.endpoint = rf.build_endpoint()
+        # ktandrian -----------------------
 
     def detect_faces(self, img: np.ndarray) -> List[FacialAreaRegion]:
         """
@@ -25,7 +29,9 @@ class RetinaFaceClient(Detector):
         """
         resp = []
 
-        obj = rf.detect_faces(img, model=self.model, threshold=0.9)
+        # ktandrian -----------------------
+        obj = rf.detect_faces(img, rf_endpoint=self.endpoint, threshold=0.9)
+        # ktandrian -----------------------
 
         if not isinstance(obj, dict):
             return resp
