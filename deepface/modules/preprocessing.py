@@ -1,21 +1,12 @@
 # built-in dependencies
-# from typing import Tuple
+from typing import Tuple
 
 # 3rd party
 import numpy as np
-# import cv2
+import cv2
 
 # project dependencies
-# from deepface.commons import package_utils
-
-
-'''
-tf_major_version = package_utils.get_tf_major_version()
-if tf_major_version == 1:
-    from keras.preprocessing import image
-elif tf_major_version == 2:
-    from tensorflow.keras.preprocessing import image
-'''
+from deepface.keras.preprocessing import img_to_array
 
 
 def normalize_input(img: np.ndarray, normalization: str = "base") -> np.ndarray:
@@ -76,7 +67,6 @@ def normalize_input(img: np.ndarray, normalization: str = "base") -> np.ndarray:
     return img
 
 
-'''
 def resize_image(img: np.ndarray, target_size: Tuple[int, int]) -> np.ndarray:
     """
     Resize an image to expected size of a ml model with adding black pixels.
@@ -115,11 +105,10 @@ def resize_image(img: np.ndarray, target_size: Tuple[int, int]) -> np.ndarray:
         img = cv2.resize(img, target_size)
 
     # make it 4-dimensional how ML models expect
-    img = image.img_to_array(img)
+    img = img_to_array(img)
     img = np.expand_dims(img, axis=0)
 
     if img.max() > 1:
         img = (img.astype(np.float32) / 255.0).astype(np.float32)
 
     return img
-'''
