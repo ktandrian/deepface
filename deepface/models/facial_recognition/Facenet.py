@@ -8,7 +8,7 @@ import os
 import time
 from numpy import ndarray
 from typing import List
-from google.cloud.aiplatform import Endpoint
+from google.cloud.aiplatform import PrivateEndpoint
 # ktandrian -----------------------
 
 logger = Logger()
@@ -71,7 +71,7 @@ class FaceNet512dClient(FacialRecognition):
 
     def __init__(self):
         # self.model = load_facenet512d_model()
-        self.endpoint = Endpoint(
+        self.endpoint = PrivateEndpoint(
             endpoint_name=os.environ.get("VERTEX_AI_FACENET512_ENDPOINT_NAME", ""),
             project=os.environ.get("VERTEX_AI_PROJECT_ID"),
             location=os.environ.get("VERTEX_AI_LOCATION"),
