@@ -1,5 +1,5 @@
 # project dependencies
-from deepface.commons import package_utils, weight_utils
+# from deepface.commons import package_utils, weight_utils
 from deepface.models.FacialRecognition import FacialRecognition
 from deepface.commons.logger import Logger
 
@@ -16,6 +16,7 @@ logger = Logger()
 # --------------------------------
 # dependency configuration
 
+'''
 tf_version = package_utils.get_tf_major_version()
 
 if tf_version == 1:
@@ -46,6 +47,7 @@ else:
     from tensorflow.keras.layers import MaxPooling2D
     from tensorflow.keras.layers import add
     from tensorflow.keras import backend as K
+'''
 
 # --------------------------------
 
@@ -56,7 +58,7 @@ class FaceNet128dClient(FacialRecognition):
     """
 
     def __init__(self):
-        self.model = load_facenet128d_model()
+        # self.model = load_facenet128d_model()
         self.model_name = "FaceNet-128d"
         self.input_shape = (160, 160)
         self.output_shape = 128
@@ -89,6 +91,7 @@ class FaceNet512dClient(FacialRecognition):
         return prediction.predictions[0]
 
 
+'''
 def scaling(x, scale):
     return x * scale
 
@@ -1717,3 +1720,4 @@ def load_facenet512d_model(
     )
 
     return model
+'''

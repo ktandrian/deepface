@@ -3,30 +3,30 @@ from typing import Any
 
 # project dependencies
 from deepface.models.facial_recognition import (
-    VGGFace,
-    OpenFace,
-    FbDeepFace,
-    DeepID,
-    ArcFace,
-    SFace,
-    Dlib,
+    # VGGFace,
+    # OpenFace,
+    # FbDeepFace,
+    # DeepID,
+    # ArcFace,
+    # SFace,
+    # Dlib,
     Facenet,
-    GhostFaceNet,
+    # GhostFaceNet,
 )
 from deepface.models.face_detection import (
-    FastMtCnn,
-    MediaPipe,
-    MtCnn,
-    OpenCv,
-    Dlib as DlibDetector,
+    # FastMtCnn,
+    # MediaPipe,
+    # MtCnn,
+    # OpenCv,
+    # Dlib as DlibDetector,
     RetinaFace,
-    Ssd,
-    Yolo,
-    YuNet,
-    CenterFace,
+    # Ssd,
+    # Yolo,
+    # YuNet,
+    # CenterFace,
 )
-from deepface.models.demography import Age, Gender, Race, Emotion
-from deepface.models.spoofing import FasNet
+# from deepface.models.demography import Age, Gender, Race, Emotion
+# from deepface.models.spoofing import FasNet
 
 
 def build_model(task: str, model_name: str) -> Any:
@@ -50,37 +50,37 @@ def build_model(task: str, model_name: str) -> Any:
 
     models = {
         "facial_recognition": {
-            "VGG-Face": VGGFace.VggFaceClient,
-            "OpenFace": OpenFace.OpenFaceClient,
-            "Facenet": Facenet.FaceNet128dClient,
+            # "VGG-Face": VGGFace.VggFaceClient,
+            # "OpenFace": OpenFace.OpenFaceClient,
+            # "Facenet": Facenet.FaceNet128dClient,
             "Facenet512": Facenet.FaceNet512dClient,
-            "DeepFace": FbDeepFace.DeepFaceClient,
-            "DeepID": DeepID.DeepIdClient,
-            "Dlib": Dlib.DlibClient,
-            "ArcFace": ArcFace.ArcFaceClient,
-            "SFace": SFace.SFaceClient,
-            "GhostFaceNet": GhostFaceNet.GhostFaceNetClient,
+            # "DeepFace": FbDeepFace.DeepFaceClient,
+            # "DeepID": DeepID.DeepIdClient,
+            # "Dlib": Dlib.DlibClient,
+            # "ArcFace": ArcFace.ArcFaceClient,
+            # "SFace": SFace.SFaceClient,
+            # "GhostFaceNet": GhostFaceNet.GhostFaceNetClient,
         },
         "spoofing": {
-            "Fasnet": FasNet.Fasnet,
+            # "Fasnet": FasNet.Fasnet,
         },
         "facial_attribute": {
-            "Emotion": Emotion.EmotionClient,
-            "Age": Age.ApparentAgeClient,
-            "Gender": Gender.GenderClient,
-            "Race": Race.RaceClient,
+            # "Emotion": Emotion.EmotionClient,
+            # "Age": Age.ApparentAgeClient,
+            # "Gender": Gender.GenderClient,
+            # "Race": Race.RaceClient,
         },
         "face_detector": {
-            "opencv": OpenCv.OpenCvClient,
-            "mtcnn": MtCnn.MtCnnClient,
-            "ssd": Ssd.SsdClient,
-            "dlib": DlibDetector.DlibClient,
+            # "opencv": OpenCv.OpenCvClient,
+            # "mtcnn": MtCnn.MtCnnClient,
+            # "ssd": Ssd.SsdClient,
+            # "dlib": DlibDetector.DlibClient,
             "retinaface": RetinaFace.RetinaFaceClient,
-            "mediapipe": MediaPipe.MediaPipeClient,
-            "yolov8": Yolo.YoloClient,
-            "yunet": YuNet.YuNetClient,
-            "fastmtcnn": FastMtCnn.FastMtCnnClient,
-            "centerface": CenterFace.CenterFaceClient,
+            # "mediapipe": MediaPipe.MediaPipeClient,
+            # "yolov8": Yolo.YoloClient,
+            # "yunet": YuNet.YuNetClient,
+            # "fastmtcnn": FastMtCnn.FastMtCnnClient,
+            # "centerface": CenterFace.CenterFaceClient,
         },
     }
 
