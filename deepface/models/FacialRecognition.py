@@ -1,18 +1,10 @@
 from abc import ABC
-from typing import Any, Union, List, Tuple
+from typing import List, Tuple
 import numpy as np
-from deepface.commons import package_utils
 from deepface.commons.logger import Logger
 
 logger = Logger()
 
-'''
-tf_version = package_utils.get_tf_major_version()
-if tf_version == 2:
-    from tensorflow.keras.models import Model
-else:
-    from keras.models import Model
-'''
 
 # Notice that all facial recognition models must be inherited from this class
 
