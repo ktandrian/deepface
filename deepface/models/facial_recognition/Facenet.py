@@ -4,6 +4,7 @@ from deepface.models.FacialRecognition import FacialRecognition
 from deepface.commons.logger import Logger
 
 # ktandrian -----------------------
+import base64
 import os
 import time
 from numpy import ndarray
@@ -83,8 +84,9 @@ class FaceNet512dClient(FacialRecognition):
     def forward(self, img: ndarray) -> List[float]:
         logger.info("# FaceNet: using endpoint model")
         tic = time.time()
+        b64 = base64.urlsafe_b64encode(img.tobytes()).decode("utf-8")
         prediction = self.endpoint.predict(
-            instances=[{ "data": img.tolist()[0] }],
+            instances=[{ "data": b64 }],
         )
         toc = time.time()
         logger.info(f"# FaceNet: model prediction took {toc-tic}s")
